@@ -1,0 +1,27 @@
+{
+  "name": "jslibrary-boilerplate",
+  "version": "1.0.0",
+  "description": "javascript library boilerplate",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jicjjang/JSLibrary-boilerplate.git"
+  },
+  "keywords": [
+    "javascript",
+    "library",
+    "boilerplate"
+  ],
+  "author": "junseok Choi <jicjjang12@gmail.com> (http://jicjjang.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jicjjang/JSLibrary-boilerplate/issues"
+  },
+  "homepage": "https://github.com/jicjjang/JSLibrary-boilerplate#readme",
+  "devDependencies": {
+    "unique-random-array": "1.0.0"
+  }
+}
