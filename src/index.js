@@ -3,26 +3,31 @@ var uniqueRandomArray = require('unique-random-array');
 
 var datas = [];
 
-axios.get('https://api.github.com/users').then(function(res) {
-  datas = res.data;
-  return datas;
-})
+var promiseUserDatas = axios.get('https://api.github.com/users').then(function(res) {
+  return res.data;
+});
 
 module.exports = {
   getDatas: function () {
-    return datas;
+    return promiseUserDatas;
   },
   getNames: function () {
     var names = [];
-    this.getDatas().map(function (val, key) {
-      names.push(val.login);
+    return this.getDatas().then(function (datas) {
+      datas.map(function (val, key) {
+        names.push(val.login);
+      });
+      return names;
     });
-    return names;
   },
-  getRandomDatas: function () {
-    return uniqueRandomArray(this.getDatas())();
+  getRandomData: function () {
+    return this.getDatas().then(function (datas) {
+      return uniqueRandomArray(datas);
+    });
   },
-  getRandomNames: function () {
-    return uniqueRandomArray(this.getNames())();
+  getRandomName: function () {
+    return this.getNames().then(function (names) {
+      return uniqueRandomArray(names);
+    });
   }
-}
+};
