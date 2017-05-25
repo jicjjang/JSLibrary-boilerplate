@@ -1,15 +1,16 @@
 {
   "name": "jslibrary-boilerplate",
-  "version": "1.0.0",
+  "version": "0.0.0-semantically-released",
   "description": "javascript library boilerplate",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha test/index.test.js -w",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jicjjang/JSLibrary-boilerplate.git"
+    "url": "https://github.com/jicjjang/JSLibrary-boilerplate.git"
   },
   "keywords": [
     "javascript",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
-    "mocha": "^3.4.1"
+    "mocha": "^3.4.1",
+    "semantic-release": "^6.3.6"
   }
 }
