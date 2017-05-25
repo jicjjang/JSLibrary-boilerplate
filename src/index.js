@@ -1,15 +1,13 @@
 var axios = require('axios');
 var uniqueRandomArray = require('unique-random-array');
 
-var datas = [];
-
-var promiseUserDatas = axios.get('https://api.github.com/users').then(function(res) {
-  return res.data;
-});
-
 module.exports = {
   getDatas: function () {
-    return promiseUserDatas;
+    return axios.get('https://api.github.com/users').then(function(res) {
+      return res.data;
+    }).catch(function (e) {
+      console.log('Error!');
+    });
   },
   getNames: function () {
     var names = [];

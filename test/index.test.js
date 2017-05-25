@@ -11,14 +11,14 @@ chai.use(chaiAsPromised);
 describe('jslibrary-boilerplate', function () {
   describe('getDatas', function () {
     it('should be object from datas', function () {
-      expect(githubDatas.getDatas()).to.eventually.satisfy(function (obj) {
-        return typeof obj === 'object';
+      githubDatas.getDatas().then(function (datas) {
+        return expect(datas).to.be.an('object');
       });
     });
     it('should be array of object', function () {
-      expect(githubDatas.getDatas()).to.eventually.satisfy(function (objs) {
-        return objs.map(function (obj, key) {
-          return typeof obj === 'object';
+      githubDatas.getDatas().then(function (datas) {
+        return datas.map(function (obj, key) {
+          return expect(obj).to.be.an('object');
         });
       });
     });
@@ -26,14 +26,14 @@ describe('jslibrary-boilerplate', function () {
 
   describe('getNames', function () {
     it('should be object from names', function () {
-      expect(githubDatas.getNames()).to.eventually.satisfy(function (names) {
-        return typeof names === 'object';
+      githubDatas.getDatas().then(function (names) {
+        return expect(names).to.be.an('object');
       });
     });
     it('should be array of string', function () {
-      expect(githubDatas.getNames()).to.eventually.satisfy(function (names) {
-        return names.map(function (name, key) {
-          return typeof name === 'string';
+      githubDatas.getNames().then(function (names) {
+        return datas.map(function (name, key) {
+          return expect(name).to.be.a('string');
         });
       });
     });
@@ -41,16 +41,16 @@ describe('jslibrary-boilerplate', function () {
 
   describe('getRandomData', function () {
     it('should be object from data', function () {
-      expect(githubDatas.getRandomData()).to.eventually.satisfy(function (data) {
-        return typeof data === 'object';
+      githubDatas.getRandomData().then(function (data) {
+        return expect(data).to.be.an('object');
       });
     });
   });
 
-  describe('getRandomNames', function () {
+  describe('getRandomName', function () {
     it('should be string from name', function () {
-      expect(githubDatas.getRandomName()).to.eventually.satisfy(function (name) {
-        return typeof name === 'string';
+      githubDatas.getRandomName().then(function (name) {
+        return expect(name).to.be.an('string');
       });
     });
   });
