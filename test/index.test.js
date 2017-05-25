@@ -45,6 +45,13 @@ describe('jslibrary-boilerplate', function () {
         return expect(data).to.be.an('object');
       });
     });
+    it('should be datas include data', function () {
+      githubDatas.getRandomData().then(function (data) {
+        githubDatas.getDatas().then(function (datas) {
+          return expect(datas).to.include(data);
+        })
+      });
+    });
   });
 
   describe('getRandomName', function () {
