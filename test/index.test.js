@@ -12,7 +12,7 @@ describe('jslibrary-boilerplate', function () {
   describe('getDatas', function () {
     it('should be object from datas', function () {
       githubDatas.getDatas().then(function (datas) {
-        return expect(datas).to.be.an('object');
+        return expect(datas).to.be.an('array');
       });
     });
     it('should be array of object', function () {
@@ -27,12 +27,12 @@ describe('jslibrary-boilerplate', function () {
   describe('getNames', function () {
     it('should be object from names', function () {
       githubDatas.getDatas().then(function (names) {
-        return expect(names).to.be.an('object');
+        return expect(names).to.be.an('array');
       });
     });
     it('should be array of string', function () {
       githubDatas.getNames().then(function (names) {
-        return datas.map(function (name, key) {
+        return names.map(function (name, key) {
           return expect(name).to.be.a('string');
         });
       });
@@ -50,7 +50,7 @@ describe('jslibrary-boilerplate', function () {
   describe('getRandomName', function () {
     it('should be string from name', function () {
       githubDatas.getRandomName().then(function (name) {
-        return expect(name).to.be.an('string');
+        return expect(name).to.be.a('string');
       });
     });
   });

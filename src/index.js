@@ -20,12 +20,12 @@ module.exports = {
   },
   getRandomData: function () {
     return this.getDatas().then(function (datas) {
-      return uniqueRandomArray(datas);
+      return uniqueRandomArray(datas)();
     });
   },
   getRandomName: function () {
     return this.getNames().then(function (names) {
-      return uniqueRandomArray(names);
+      return uniqueRandomArray(names)();
     });
   }
 };
