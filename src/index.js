@@ -1,8 +1,11 @@
 import axios from 'axios';
 import uniqueRandomArray from 'unique-random-array';
 
-
-var githubInfo = axios.get('https://api.github.com/users').then(function(res) {
+var githubInfo = axios({
+  method: 'get',
+  url: 'https://api.github.com/users',
+  timeout: 5000,
+}).then(function(res) {
   return res.data;
   // this.datas = res.data;
   // this.datas.map(function (val, key) {
