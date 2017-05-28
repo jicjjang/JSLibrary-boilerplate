@@ -5,6 +5,10 @@ import githubDatas from '../src/index'
 // http://chaijs.com/plugins/chai-as-promised/
 
 describe('jslibrary-boilerplate', function () {
+  before((done) => {
+    githubDatas.init().then(() => done())
+  })
+
   describe('getDatas', function () {
     it('should be object from datas', (done) => {
       githubDatas.getDatas().then((datas) => {
@@ -23,7 +27,7 @@ describe('jslibrary-boilerplate', function () {
   })
 
   describe('getNames', function () {
-    it('should be object from names', function (done) {
+    it('should be array from names', function (done) {
       githubDatas.getNames().then((names) => {
         expect(names).to.be.an('array')
         done()
@@ -40,25 +44,25 @@ describe('jslibrary-boilerplate', function () {
   })
 
   describe('getRandomAnythings', function () {
-    it('should be datas include data', function (done) {
+    it('should be random data of datas object', function (done) {
       githubDatas.getDatas().then((datas) => {
         expect(githubDatas.getRandomAnythings(datas)).to.be.a('object')
         done()
       })
     })
-    it('should be datas include data', function (done) {
+    it('should be random data include datas object', function (done) {
       githubDatas.getDatas().then((datas) => {
         expect(datas).to.include(githubDatas.getRandomAnythings(datas))
         done()
       })
     })
-    it('should be datas include data', function (done) {
+    it('should be random name of names array', function (done) {
       githubDatas.getNames().then((names) => {
         expect(githubDatas.getRandomAnythings(names)).to.be.a('string')
         done()
       })
     })
-    it('should be datas include data', function (done) {
+    it('should be random name include names array', function (done) {
       githubDatas.getNames().then((names) => {
         expect(names).to.include(githubDatas.getRandomAnythings(names))
         done()

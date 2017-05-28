@@ -1,39 +1,38 @@
-import axios from 'axios';
-import uniqueRandomArray from 'unique-random-array';
+import axios from 'axios'
+import uniqueRandomArray from 'unique-random-array'
 
-var githubInfo = axios({
-  method: 'get',
-  url: 'https://api.github.com/users',
-  timeout: 5000,
-}).then(function(res) {
-  return res.data;
-  // this.datas = res.data;
-  // this.datas.map(function (val, key) {
-  //   names.push(val.login);
-  // });
-  // this.names = names;
-}).catch(function (e) {
-  console.log('Error!');
-});
-
-module.exports = {
+const githubDatas = {
   datas: null,
-  names: null,
-  getDatas: function () {
-    return githubInfo.then(function (datas) {
-      return datas;
-    });
+  init: () => {
+    if (githubDatas.datas) {
+      return new Promise((resolve, reject) => {
+        resolve(githubDatas.datas)
+      })
+    } else {
+      return axios({
+        method: 'get',
+        url: 'https://api.github.com/users',
+        timeout: 5000
+      }).then((res) => {
+        return githubDatas.datas = res.data
+      })
+    }
   },
-  getNames: function () {
-    return githubInfo.then(function (datas) {
-      var names = [];
-      datas.map(function (val, key) {
-        names.push(val.login);
-      });
-      return names;
-    });
+  getDatas: () => {
+    return githubDatas.init()
   },
-  getRandomAnythings: function (datas) {
-    return uniqueRandomArray(datas)();
+  getNames: () => {
+    var names = []
+    return githubDatas.init().then((datas) => {
+      datas.map((val, key) => {
+        names.push(val.login)
+      })
+      return names
+    })
+  },
+  getRandomAnythings: (datas) => {
+    return uniqueRandomArray(datas)()
   }
-};
+}
+
+export default githubDatas
