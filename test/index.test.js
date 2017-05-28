@@ -1,64 +1,68 @@
-var chai = require('chai');
-var expect = chai.expect;
-var chaiAsPromised = require("chai-as-promised");
-
-var githubDatas = require('../src/index')
-
-chai.use(chaiAsPromised);
+import chai from 'chai'
+var expect = chai.expect
+import githubDatas from '../src/index'
 
 // http://chaijs.com/plugins/chai-as-promised/
 
 describe('jslibrary-boilerplate', function () {
   describe('getDatas', function () {
-    it('should be object from datas', function () {
-      githubDatas.getDatas().then(function (datas) {
-        return expect(datas).to.be.an('array');
-      });
-    });
-    it('should be array of object', function () {
-      githubDatas.getDatas().then(function (datas) {
-        return datas.map(function (obj, key) {
-          return expect(obj).to.be.an('object');
-        });
-      });
-    });
-  });
+    it('should be object from datas', (done) => {
+      githubDatas.getDatas().then((datas) => {
+        expect(datas).to.be.an('array')
+        done()
+      })
+    })
+    it('should be array of object', function (done) {
+      githubDatas.getDatas().then((datas) => {
+        datas.map(function (obj, key) {
+          expect(obj).to.be.an('object')
+        })
+        done()
+      })
+    })
+  })
 
   describe('getNames', function () {
-    it('should be object from names', function () {
-      githubDatas.getDatas().then(function (names) {
-        return expect(names).to.be.an('array');
-      });
-    });
-    it('should be array of string', function () {
-      githubDatas.getNames().then(function (names) {
-        return names.map(function (name, key) {
-          return expect(name).to.be.a('string');
-        });
-      });
-    });
-  });
-
-  describe('getRandomData', function () {
-    it('should be object from data', function () {
-      githubDatas.getRandomData().then(function (data) {
-        return expect(data).to.be.an('object');
-      });
-    });
-    it('should be datas include data', function () {
-      githubDatas.getRandomData().then(function (data) {
-        githubDatas.getDatas().then(function (datas) {
-          return expect(datas).to.include(data);
+    it('should be object from names', function (done) {
+      githubDatas.getNames().then((names) => {
+        expect(names).to.be.an('array')
+        done()
+      })
+    })
+    it('should be array of string', function (done) {
+      githubDatas.getNames().then((names) => {
+        names.map(function (names, key) {
+          expect(names).to.be.an('string')
         })
-      });
-    });
-  });
+        done()
+      })
+    })
+  })
 
-  describe('getRandomName', function () {
-    it('should be string from name', function () {
-      githubDatas.getRandomName().then(function (name) {
-        return expect(name).to.be.a('string');
-      });
-    });
-  });
-});
+  describe('getRandomAnythings', function () {
+    it('should be datas include data', function (done) {
+      githubDatas.getDatas().then((datas) => {
+        expect(githubDatas.getRandomAnythings(datas)).to.be.a('object')
+        done()
+      })
+    })
+    it('should be datas include data', function (done) {
+      githubDatas.getDatas().then((datas) => {
+        expect(datas).to.include(githubDatas.getRandomAnythings(datas))
+        done()
+      })
+    })
+    it('should be datas include data', function (done) {
+      githubDatas.getNames().then((names) => {
+        expect(githubDatas.getRandomAnythings(names)).to.be.a('string')
+        done()
+      })
+    })
+    it('should be datas include data', function (done) {
+      githubDatas.getNames().then((names) => {
+        expect(names).to.include(githubDatas.getRandomAnythings(names))
+        done()
+      })
+    })
+  })
+})
