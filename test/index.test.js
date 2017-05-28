@@ -5,6 +5,8 @@ import githubDatas from '../src/index'
 // http://chaijs.com/plugins/chai-as-promised/
 
 describe('jslibrary-boilerplate', function () {
+  this.timeout(5000)
+
   before((done) => {
     githubDatas.init().then(() => done())
   })
