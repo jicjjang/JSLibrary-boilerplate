@@ -1,22 +1,23 @@
 import axios from 'axios'
 import uniqueRandomArray from 'unique-random-array'
+import localDatas from './localDatas.json'
 
 const githubDatas = {
-  datas: null,
+  datas: localDatas,
   init: () => {
-    if (githubDatas.datas) {
+    // if (githubDatas.datas) {
       return new Promise((resolve, reject) => {
         resolve(githubDatas.datas)
       })
-    } else {
-      return axios({
-        method: 'get',
-        url: 'https://api.github.com/users',
-        timeout: 5000
-      }).then((res) => {
-        return githubDatas.datas = res.data
-      })
-    }
+    // } else {
+    //   return axios({
+    //     method: 'get',
+    //     url: './githubDatas.json',
+    //     timeout: 5000
+    //   }).then((res) => {
+    //     return githubDatas.datas = res.data
+    //   })
+    // }
   },
   getDatas: () => {
     return githubDatas.init()
